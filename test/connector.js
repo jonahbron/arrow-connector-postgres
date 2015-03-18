@@ -4,7 +4,7 @@ var should = require('should'),
 	Arrow = require('arrow'),
 	server = new Arrow(),
 	log = Arrow.createLogger({}, { name: 'mysql TEST', useConsole: true, level: 'info' }),
-	connector = server.getConnector('appc.mysql'),
+	connector = server.getConnector('postgres'),
 	Model;
 
 describe('Connector', function() {
@@ -16,7 +16,7 @@ describe('Connector', function() {
 				title: { type: String },
 				content: { type: String }
 			},
-			connector: 'appc.mysql'
+			connector: 'postgres'
 		});
 
 		should(Model).be.an.object;
@@ -44,18 +44,18 @@ describe('Connector', function() {
 	});
 
 	it('should create models from tables', function() {
-		var SuperPost = connector.getModel('appc.mysql/super_post');
+		var SuperPost = connector.getModel('postgres/super_post');
 		should(SuperPost).be.ok;
 		should(SuperPost.generated).be.true;
 	});
 
 	it('should be able to extend from tables', function(next) {
-		var SupererPost = Arrow.Model.extend('appc.mysql/super_post', 'superer_post', {
+		var SupererPost = Arrow.Model.extend('postgres/super_post', 'superer_post', {
 			fields: {
 				MyTitle: { name: 'title', type: String },
 				MyContent: { name: 'content', type: String }
 			},
-			connector: 'appc.mysql'
+			connector: 'postgres'
 		});
 		should(SupererPost).be.ok;
 		should(SupererPost._supermodel).be.ok;
@@ -79,7 +79,7 @@ describe('Connector', function() {
 					MyTitle: { name: 'title', type: String },
 					MyContent: { name: 'content', type: String }
 				},
-				connector: 'appc.mysql'
+				connector: 'postgres'
 			}),
 			title = 'Test',
 			content = 'Hello world',
@@ -113,9 +113,9 @@ describe('Connector', function() {
 					lname: { type: String, description: 'Last name', required: true, name: 'last_name' },
 					email: { type: String, description: 'Email address', required: true, name: 'email_address' }
 				},
-				connector: 'appc.mysql',
+				connector: 'postgres',
 				metadata: {
-					'appc.mysql': { table: 'employee' }
+					'postgres': { table: 'employee' }
 				}
 			}),
 			object = {
@@ -149,7 +149,7 @@ describe('Connector', function() {
 					MyContent: { name: 'content', type: String },
 					MyCustomField: { type: String }
 				},
-				connector: 'appc.mysql'
+				connector: 'postgres'
 			}),
 			title = 'Test',
 			content = 'Hello world',
@@ -294,7 +294,7 @@ describe('Connector', function() {
 				myTitle: { name: 'title', type: String },
 				myContent: { name: 'content', type: String }
 			},
-			connector: 'appc.mysql'
+			connector: 'postgres'
 		});
 		var title = 'Test',
 			content = 'Hello world',

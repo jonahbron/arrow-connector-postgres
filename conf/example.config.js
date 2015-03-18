@@ -1,6 +1,6 @@
 module.exports = {
 	connectors: {
-		'appc.mysql': {
+		'postgres': {
 			connectionPooling: true,
 			connectionLimit: 10,
 

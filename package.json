@@ -24,7 +24,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "lodash": "^2.4.1",
-    "mysql": "^2.5.0",
+    "pg": "^4.3.0",
     "pkginfo": "^0.3.0"
   },
   "devDependencies": {
