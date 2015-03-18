@@ -1,13 +1,13 @@
-# MySQL Connector
+# Postgres Connector
 
-This is an Arrow connector to MySQL.
+This is an Arrow connector to Postgres.
 
 > This software is pre-release and not yet ready for usage.  Please don't use this just yet while we're working through testing and finishing it up. Once it's ready, we'll make an announcement about it.
 
 To install:
 
 ```bash
-$ appc install connector/appc.mysql --save
+$ appc install connector/appc.postgres --save
 ```
 
 By default we use `localhost`, `root` and empty password.
@@ -21,7 +21,7 @@ var Account = Arrow.Model.extend('Account',{
 	fields: {
 		Name: { type: String, required: true, validator: /[a-zA-Z]{3,}/ }
 	},
-	connector: 'appc.mysql'
+	connector: 'appc.postgres'
 });
 ```
 
@@ -32,9 +32,9 @@ var Account = Arrow.Model.extend('account',{
 	fields: {
 		Name: { type: String, required: false, validator: /[a-zA-Z]{3,}/ }
 	},
-	connector: 'appc.mysql',
+	connector: 'appc.postgres',
 	metadata: {
-		'appc.mysql': {
+		'appc.postgres': {
 			table: 'accounts'
 		}
 	}
