@@ -3,7 +3,7 @@ var should = require('should'),
 	_ = require('lodash'),
 	Arrow = require('arrow'),
 	server = new Arrow(),
-	log = Arrow.createLogger({}, { name: 'mysql TEST', useConsole: true, level: 'info' }),
+	log = Arrow.createLogger({}, { name: 'postgres TEST', useConsole: true, level: 'info' }),
 	connector = server.getConnector('postgres'),
 	Model;
 
@@ -106,7 +106,7 @@ describe('Connector', function() {
 	});
 
 	it('API-298: should be able to use named fields', function(next) {
-		// create a model from a mysql table
+		// create a model from a postgres table
 		var uc_1 = Arrow.createModel('uc_1', {
 				fields: {
 					fname: { type: String, description: 'First name', name: 'first_name', required: true },
