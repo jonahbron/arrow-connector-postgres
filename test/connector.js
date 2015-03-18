@@ -50,6 +50,7 @@ describe('Connector', function() {
 	});
 
 	it('should be able to extend from tables', function(next) {
+		Arrow.getConnector('postgres').enabled = true;
 		var SupererPost = Arrow.Model.extend('postgres/super_post', 'superer_post', {
 			fields: {
 				MyTitle: { name: 'title', type: String },
