@@ -10,7 +10,7 @@ var Post = Arrow.Model.extend('post', {
 		title: { type: String },
 		content: { type: String }
 	},
-	connector: 'appc.mysql'
+	connector: 'postgres'
 });
 server.addModel(Post);
 

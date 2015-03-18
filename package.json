@@ -1,8 +1,8 @@
 {
-  "name": "appc.mysql",
-  "description": "MySQL connector",
-  "version": "1.0.39",
-  "author": "Jeff Haynie",
+  "name": "postgres",
+  "description": "Postgres connector for Arrow",
+  "version": "0.1.0",
+  "author": "Jonah Dahlquist",
   "license": "Apache-2.0",
   "framework": "none",
   "keywords": [
@@ -10,11 +10,11 @@
     "arrow-connector",
     "appc-cli-plugin",
     "appcelerator",
-    "mysql"
+    "postgres"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:appcelerator/appc.mysql.git"
+    "url": "git@github.com:jonahbron/arrow-connector-postgres.git"
   },
   "scripts": {
     "test": "grunt",
