@@ -288,6 +288,69 @@ describe('Connector', function() {
 
 	});
 
+	it('should be able to query in list', function(callback) {
+
+		var title = 'Test',
+			content = 'Hello world',
+			object = {
+				title: title,
+				content: content
+			};
+
+		Model.create(object, function(err, instance) {
+			should(err).be.not.ok;
+			should(instance).be.an.object;
+
+			var options = {
+				where: { content: { $in: ['Foo', 'Test'] } },
+				sel: { content: 1 },
+				order: { title: -1, content: 1 },
+				limit: 3,
+				skip: 0
+			};
+			Model.query(options, function(err, coll) {
+				should(err).be.not.ok;
+
+				async.eachSeries(coll, function(obj, next) {
+					should(obj.getPrimaryKey()).be.a.Number;
+					should(obj.title).be.not.ok;
+					should(obj.content).be.a.string;
+					obj.remove(next);
+				}, callback);
+			});
+		});
+
+	});
+
+	it('should not have false positives in an IN query', function(callback) {
+
+		var title = 'Test',
+			content = 'Hello world',
+			object = {
+				title: title,
+				content: content
+			};
+
+		Model.create(object, function(err, instance) {
+			should(err).be.not.ok;
+			should(instance).be.an.object;
+
+			var options = {
+				where: { content: { $in: ['Foo', 'Bar'] } },
+				sel: { content: 1 },
+				order: { title: -1, content: 1 },
+				limit: 3,
+				skip: 0
+			};
+			Model.query(options, function(err, coll) {
+				should(err).be.not.ok;
+				coll.length.should.be.zero;
+				callback();
+			});
+		});
+
+	});
+
 	it('API-325: should be able to query with unsel', function(callback) {
 
 		var Model = Arrow.Model.extend('post', {
