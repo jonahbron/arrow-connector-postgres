@@ -2,7 +2,6 @@
   "type": "connector",
   "group": "arrow",
   "access": "public",
-  "dependencies": {},
   "owners": [
     "jhaynie@appcelerator.com",
     "dtoth@appcelerator.com",
