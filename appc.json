@@ -2,12 +2,11 @@
   "type": "connector",
   "group": "arrow",
   "access": "public",
+  "dependencies": {},
   "owners": [
-    "jhaynie@appcelerator.com",
-    "dtoth@appcelerator.com",
-    "tlukasavage@appcelerator.com",
-    "mgoff@appcelerator.com",
-    "jonah@limelighthealth.com",
     "devcloud@limelighthealth.com"
-  ]
+  ],
+  "assets": {
+    "small_logo": "docs/marketplace-postgres.svg"
+  }
 }
