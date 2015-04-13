@@ -26,7 +26,7 @@ describe('Connector', function() {
 		});
 	});
 
-	after(function(next) {
+	afterEach(function(next) {
 		Model.deleteAll(function(err) {
 			if (err) {
 				log.error(err.message);
@@ -349,6 +349,122 @@ describe('Connector', function() {
 			});
 		});
 
+	});
+
+	it('should support greater-than queries', function(callback) {
+		var object1 = {
+				title: '1',
+				content: 'baz'
+			},
+			object2 = {
+				title: '3',
+				content: 'baz',
+			};
+
+		Model.create(object1, function(err, instance1) {
+			Model.create(object2, function(err, instance2) {
+				should(err).be.not.ok;
+				should(instance1).be.an.object;
+				should(instance2).be.an.object;
+
+				var options = {
+					where: { title: { $gt: '2' } }
+				};
+				Model.query(options, function(err, coll) {
+					should(err).be.not.ok;
+					coll.length.should.equal(1);
+					coll[0].title.should.equal('3');
+					callback();
+				});
+			});
+		});
+	});
+
+	it('should support greater-than or equal queries', function(callback) {
+		var object1 = {
+				title: '1',
+				content: 'baz'
+			},
+			object2 = {
+				title: '3',
+				content: 'baz',
+			};
+
+		Model.create(object1, function(err, instance1) {
+			Model.create(object2, function(err, instance2) {
+				should(err).be.not.ok;
+				should(instance1).be.an.object;
+				should(instance2).be.an.object;
+
+				var options = {
+					where: { title: { $gte: '3' } }
+				};
+				Model.query(options, function(err, coll) {
+					should(err).be.not.ok;
+					coll.length.should.equal(1);
+					coll[0].title.should.equal('3');
+					callback();
+				});
+			});
+		});
+	});
+
+	it('should support less-than queries', function(callback) {
+		var object1 = {
+				title: '1',
+				content: 'baz'
+			},
+			object2 = {
+				title: '3',
+				content: 'baz',
+			};
+
+		Model.create(object1, function(err, instance1) {
+			Model.create(object2, function(err, instance2) {
+				should(err).be.not.ok;
+				should(instance1).be.an.object;
+				should(instance2).be.an.object;
+
+				var options = {
+					where: { title: { $lt: '2' } }
+				};
+				Model.query(options, function(err, coll) {
+					should(err).be.not.ok;
+					coll.length.should.equal(1);
+					coll[0].title.should.equal('1');
+					callback();
+				});
+			});
+		});
+	});
+
+	it('should support less-than or equal queries', function(callback) {
+		var object1 = {
+				title: '1',
+				content: 'baz'
+			},
+			object2 = {
+				title: '3',
+				content: 'baz',
+			};
+
+		Model.create(object1, function(err, instance1) {
+			Model.create(object2, function(err, instance2) {
+				should(err).be.not.ok;
+				should(instance1).be.an.object;
+				should(instance2).be.an.object;
+
+				var options = {
+					where: { title: { $lte: '1' } }
+				};
+				Model.query(options, function(err, coll) {
+					should(err).be.not.ok;
+					coll.length.should.equal(1);
+					coll[0].title.should.equal('1');
+					callback();
+				});
+			});
+		});
 	});
 
 	it('API-325: should be able to query with unsel', function(callback) {
