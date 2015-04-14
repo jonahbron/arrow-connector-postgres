@@ -467,6 +467,28 @@ describe('Connector', function() {
 		});
 	});
 
+	it('should handle NULL checks properly', function(callback) {
+		var object = {
+			title: '1',
+			content: null
+		};
+
+		Model.create(object, function(err, instance) {
+			should(err).be.not.ok;
+			should(instance).be.an.object;
+
+			var options = {
+				where: { content: null }
+			};
+			Model.query(options, function(err, coll) {
+				should(err).be.not.ok;
+				coll.length.should.equal(1);
+				coll[0].title.should.equal('1');
+				callback();
+			});
+		});
+	});
+
 	it('API-325: should be able to query with unsel', function(callback) {
 
 		var Model = Arrow.Model.extend('post', {
