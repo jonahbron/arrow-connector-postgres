@@ -687,5 +687,34 @@ describe('Connector', function() {
 			});
 		});
 	});
-	
+
+	it('Should allow passing arbitrary SQL to WHERE clause with prepared statements', function(callback) {
+
+		var title = 'Test',
+			content = 'Hello world',
+			object = {
+				title: title,
+				content: content
+			};
+
+		Model.create(object, function(err, instance) {
+			should(err).be.not.ok;
+			should(instance).be.an.object;
+
+			var options = {
+				where: { '': { $sql: 'title = $1 AND content != $1', values: ['Test'] } },
+				sel: { content: 1 },
+				order: { title: -1, content: 1 },
+				limit: 3,
+				skip: 0
+			};
+			Model.query(options, function(err, coll) {
+				should(err).be.not.ok;
+				coll.length.should.equal(1);
+				callback();
+			});
+		});
+
+	});
+
 });
