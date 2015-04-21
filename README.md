@@ -2,19 +2,18 @@
 
 This is an Arrow connector to Postgres.
 
-> This software is pre-release and not yet ready for usage.  Please don't use this just yet while we're working through testing and finishing it up. Once it's ready, we'll make an announcement about it.
-
-To install:
+## Installation
 
 ```bash
 $ appc install connector/postgres --save
 ```
 
-By default we use `localhost`, `root` and empty password.
+A configuration file is generated for you. By default we use a host of `localhost`, a user of `root` and an
+empty password to connect. However, you must set a database in your configuration.
 
-However, you must set a database in your configuration.
+## Usage
 
-Now reference the connector in your model.
+Reference the connector in your model.
 
 ```javascript
 var Account = Arrow.Model.extend('Account',{
@@ -25,7 +24,8 @@ var Account = Arrow.Model.extend('Account',{
 });
 ```
 
-If you want to map a specific model to a specific table, use metadata.  For example, to map the `account` model to the table named `accounts`, set it such as:
+If you want to map a specific model to a specific table, use metadata.  For example, to map the `account` model to 
+the table named `accounts`, set it such as:
 
 ```javascript
 var Account = Arrow.Model.extend('account',{
@@ -41,7 +41,17 @@ var Account = Arrow.Model.extend('account',{
 });
 ```
 
-# Testing
+## Development
+
+> This section is for individuals developing the Postgres Connector and not intended
+  for end-users.
+
+```bash
+npm install
+node app.js
+```
+
+### Running Unit Tests
 
 To use the tests, you'll want to create a database with the following tables:
 
@@ -66,6 +76,11 @@ CREATE TABLE employee
 	email_address VARCHAR(255)
 );
 ```
+
+```bash
+npm test
+```
+
 
 # Contributing
 
