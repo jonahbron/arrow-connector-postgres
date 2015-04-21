@@ -10,7 +10,8 @@ module.exports = {
 			host: 'localhost',
 			port: 5432,
 
-			generateModelsFromSchema: true
+			generateModelsFromSchema: true,
+			modelAutogen: true
 		}
 	}
 };
