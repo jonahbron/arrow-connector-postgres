@@ -675,7 +675,7 @@ describe('Connector', function() {
 		});
 
 	});
-	
+
 	it('API-377: should be able to query with just skip', function(callback) {
 		Model.query({}, function(err, coll1) {
 			should(err).be.not.ok;
@@ -702,7 +702,10 @@ describe('Connector', function() {
 			should(instance).be.an.object;
 
 			var options = {
-				where: { '': { $sql: 'title = $1 AND content != $1', values: ['Test'] } },
+				where: {
+					content: { $like: 'Hello%' },
+					'': { $sql: 'title = $1 AND content != $1 ', values: ['Test'] }
+				},
 				sel: { content: 1 },
 				order: { title: -1, content: 1 },
 				limit: 3,
