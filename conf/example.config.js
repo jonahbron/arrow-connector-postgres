@@ -11,7 +11,9 @@ module.exports = {
 			port: 5432,
 
 			generateModelsFromSchema: true,
-			modelAutogen: true
+			modelAutogen: true,
+
+			parseInputDatesAsUTC: false
 		}
 	}
 };
