@@ -13,7 +13,8 @@ module.exports = {
 			generateModelsFromSchema: true,
 			modelAutogen: true,
 
-			parseInputDatesAsUTC: false
+			parseInputDatesAsUTC: false,
+			schemas: ['public'] // defaults to ['public'] if left omitted
 		}
 	}
 };

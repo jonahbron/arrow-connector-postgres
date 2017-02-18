@@ -13,7 +13,24 @@ empty password to connect. However, you must set a database in your configuratio
 
 ## Usage
 
-Reference the connector in your model.
+The Postgres connector will automatically generate models from the tables in your database.  You will not normally need to define them yourself.
+
+To reference a model, use `Arrow.getModel`
+
+```javascript
+var Arrow = require('arrow');
+var User = Arrow.getModel('postgres/users');
+```
+
+If you need to explicitly specify the schema, you can do so in the model name.
+
+```javascript
+var User = Arrow.getModel('postgres/my_schema.users');
+```
+
+You can only reference schemas whitelisted in the `schemas` config option.  Do not specify a schema name if your schema is already in the [`search_path`](https://www.postgresql.org/docs/9.3/static/ddl-schemas.html#DDL-SCHEMAS-PATH).
+
+## Defining Models
 
 ```javascript
 var Account = Arrow.Model.extend('Account',{
@@ -24,8 +41,7 @@ var Account = Arrow.Model.extend('Account',{
 });
 ```
 
-If you want to map a specific model to a specific table, use metadata.  For example, to map the `account` model to 
-the table named `accounts`, set it such as:
+If you want to map a specific model to a specific table, use metadata.  For example, to map the `account` model to the table named `accounts`, set it such as:
 
 ```javascript
 var Account = Arrow.Model.extend('account',{
