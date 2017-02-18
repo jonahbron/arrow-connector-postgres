@@ -28,7 +28,8 @@ module.exports = {
 			host: 'localhost',
 			port: 5432,
 
-			parseInputDatesAsUTC: false
+			parseInputDatesAsUTC: false,
+			schemas: ['public'] // defaults to ['public'] if left omitted
 		}
 	}
 };
