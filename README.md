@@ -30,6 +30,12 @@ var User = Arrow.getModel('postgres/my_schema.users');
 
 You can only reference schemas whitelisted in the `schemas` config option.  Do not specify a schema name if your schema is already in the [`search_path`](https://www.postgresql.org/docs/9.3/static/ddl-schemas.html#DDL-SCHEMAS-PATH).
 
+## Config
+
+**`onAllocateConnection`**`(connection, done)`: Hook function called when a pool connection is allocated.  `done` must be called after the hook is complete.
+
+**`onDeallocateConnection`**`(connection, done)`: Hook function called right before a connection is returned to the pool.  `done` must be called after the hook is complete.
+
 ## Defining Models
 
 ```javascript
