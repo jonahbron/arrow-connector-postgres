@@ -32,9 +32,9 @@ You can only reference schemas whitelisted in the `schemas` config option.  Do n
 
 ## Config
 
-**`onAllocateConnection`**`(connection, done)`: Hook function called when a pool connection is allocated.  `done` must be called after the hook is complete.
+**`onAllocateConnection`**`(connection, request, response, done)`: Hook function called when a pool connection is allocated.  If the connection is being allocated within the context of a HTTP request, `request` and `response` will have their appropriate values from the framework.  Otherwise, they will be null.  `done` must be called after the hook is complete.
 
-**`onDeallocateConnection`**`(connection, done)`: Hook function called right before a connection is returned to the pool.  `done` must be called after the hook is complete.
+**`onDeallocateConnection`**`(connection, request, response, done)`: Hook function called right before a connection is returned to the pool.  The behavior of `request` and `response` are the same as in `onAllocateConnection`.  `done` must be called after the hook is complete.
 
 ## Defining Models
 
