@@ -1,7 +1,7 @@
 {
   "name": "postgres",
   "description": "Postgres connector for Arrow",
-  "version": "0.24.3",
+  "version": "0.24.4",
   "author": "Jonah Dahlquist",
   "license": "Apache-2.0",
   "framework": "none",
