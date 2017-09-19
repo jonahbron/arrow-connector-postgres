@@ -19,14 +19,14 @@ module.exports = {
 	},
 	connectors: {
 		'postgres': {
-			connectionPooling: true,
-			connectionLimit: 10,
-
-			database: 'test',
-			user: 'postgres',
-			// password: '',
-			host: 'localhost',
-			port: 5432,
+			connection: {
+				database: 'test',
+				user: 'postgres',
+				// password: '',
+				host: 'localhost',
+				port: 5432,
+				max: 10
+			},
 
 			parseInputDatesAsUTC: false,
 			schemas: ['public'] // defaults to ['public'] if left omitted

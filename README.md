@@ -36,6 +36,8 @@ You can only reference schemas whitelisted in the `schemas` config option.  Do n
 
 **`onDeallocateConnection`**`(connection, request, response, done)`: Hook function called right before a connection is returned to the pool.  The behavior of `request` and `response` are the same as in `onAllocateConnection`.  `done` must be called after the hook is complete.
 
+**`readReplicaHosts`** (optional): Array of alternate read-replica hosts to connect to for read-only queries.
+
 ## Defining Models
 
 ```javascript
